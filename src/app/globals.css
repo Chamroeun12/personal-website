@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  
+  --bg-primary: #0b1220;
+  --bg-secondary: #111827;
+  --bg-card: #111827;
+  --bg-card-hover: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --primary: #2563eb;
+  --secondary: #38bdf8;
+  --accent-glow: rgba(37, 99, 235, 0.25);
+}
+
+html[data-theme="light"],
+html.light,
+body.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --primary: #2563eb;
+  --secondary: #0284c7;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-inter);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility classes */
+.glass-card {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme="light"] .glass-card,
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 16px 36px 0 rgba(37, 99, 235, 0.2);
+}
+
+html[data-theme="light"] .glass-card-hover:hover,
+html.light .glass-card-hover:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 16px 36px 0 rgba(37, 99, 235, 0.12);
+}
+
+/* Gradient accents */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #2563eb 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+html[data-theme="light"] .gradient-text,
+html.light .gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+html[data-theme="light"] .gradient-gold,
+html.light .gradient-gold {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1220;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Animation utilities */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 8s ease-in-out infinite;
+}
+
+/* ============================================================
+   LIGHT THEME HIGH-CONTRAST TYPOGRAPHY & SURFACE ENGINE
+   ============================================================ */
+
+html[data-theme="light"],
+html.light {
+  color-scheme: light;
+}
+
+html[data-theme="light"] body,
+html.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Headings in Light Mode */
+html[data-theme="light"] h1, html.light h1,
+html[data-theme="light"] h2, html.light h2,
+html[data-theme="light"] h3, html.light h3,
+html[data-theme="light"] h4, html.light h4,
+html[data-theme="light"] h5, html.light h5,
+html[data-theme="light"] h6, html.light h6 {
+  color: #0f172a !important;
+}
+
+/* Turn text-white into rich charcoal in Light Mode, except on colored buttons & tags */
+html[data-theme="light"] .text-white:not(
+  button.bg-brand-blue,
+  button.bg-blue-600,
+  button.bg-indigo-600,
+  button.bg-emerald-600,
+  button.bg-amber-600,
+  button.bg-red-600,
+  a.bg-brand-blue,
+  a.bg-blue-600,
+  a.bg-indigo-600,
+  a.bg-emerald-600,
+  .bg-brand-blue,
+  .bg-emerald-500,
+  .bg-emerald-600,
+  .bg-indigo-600,
+  .bg-blue-600,
+  [class*="from-brand-blue"],
+  [class*="from-blue-"],
+  [class*="from-indigo-"],
+  [class*="from-emerald-"],
+  [class*="from-amber-"],
+  [class*="bg-gradient-to-"]
+),
+html.light .text-white:not(
+  button.bg-brand-blue,
+  button.bg-blue-600,
+  button.bg-indigo-600,
+  button.bg-emerald-600,
+  button.bg-amber-600,
+  button.bg-red-600,
+  a.bg-brand-blue,
+  a.bg-blue-600,
+  a.bg-indigo-600,
+  a.bg-emerald-600,
+  .bg-brand-blue,
+  .bg-emerald-500,
+  .bg-emerald-600,
+  .bg-indigo-600,
+  .bg-blue-600,
+  [class*="from-brand-blue"],
+  [class*="from-blue-"],
+  [class*="from-indigo-"],
+  [class*="from-emerald-"],
+  [class*="from-amber-"],
+  [class*="bg-gradient-to-"]
+) {
+  color: #0f172a !important;
+}
+
+/* Light Mode Muted Text */
+html[data-theme="light"] .text-slate-100,
+html[data-theme="light"] .text-slate-200,
+html[data-theme="light"] .text-slate-300,
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-slate-400,
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Light Mode Dark Section Background Overrides */
+html[data-theme="light"] .bg-\[\#0b1220\],
+html[data-theme="light"] .bg-\[\#090e1a\],
+html[data-theme="light"] .bg-\[\#0c1424\],
+html[data-theme="light"] .bg-\[\#111827\],
+html[data-theme="light"] .bg-\[\#070b14\],
+html[data-theme="light"] .bg-\[\#0c1322\],
+html[data-theme="light"] .bg-\[\#0d1527\],
+html.light .bg-\[\#0b1220\],
+html.light .bg-\[\#090e1a\],
+html.light .bg-\[\#0c1424\],
+html.light .bg-\[\#111827\],
+html.light .bg-\[\#070b14\],
+html.light .bg-\[\#0c1322\],
+html.light .bg-\[\#0d1527\] {
+  background-color: #f8fafc !important;
+}
+
+/* Cards & Modals in Light Mode */
+html[data-theme="light"] .bg-slate-900\/60,
+html[data-theme="light"] .bg-slate-900\/80,
+html[data-theme="light"] .bg-slate-900,
+html[data-theme="light"] .bg-slate-950,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900,
+html.light .bg-slate-950 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .bg-black\/40,
+html[data-theme="light"] .bg-black\/50,
+html.light .bg-black\/40,
+html.light .bg-black\/50 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] .bg-white\/5,
+html[data-theme="light"] .bg-white\/10,
+html.light .bg-white\/5,
+html.light .bg-white\/10 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] .border-white\/5,
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/15,
+html[data-theme="light"] .border-white\/20,
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/20 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Form Controls in Light Mode */
+html[data-theme="light"] input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+html[data-theme="light"] textarea,
+html[data-theme="light"] select,
+html[data-theme="light"] option,
+html.light input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+html.light textarea,
+html.light select,
+html.light option {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder,
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Light Mode Scrollbars */
+html[data-theme="light"] ::-webkit-scrollbar-track,
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb,
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
